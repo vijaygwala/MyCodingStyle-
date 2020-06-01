@@ -1,0 +1,50 @@
+import java.util.LinkedList;
+import java.util.Queue;
+class Node {
+	int data;
+	Node left;
+	Node right;
+
+	public Node(int data) {
+		this.data = data;
+		this.left = null;
+		this.right = null;
+	}
+}
+
+
+class Ai_bfs {
+
+	public void bfstraversal(Node root) {
+		Queue<Node> openlist = new LinkedList<Node>();
+		Queue<Integer> closelist = new LinkedList<Integer>();
+		if (root == null)
+			return;
+		openlist.add(root);
+		while (!openlist.isEmpty()) {
+			Node n = (Node) openlist.remove();
+			closelist.add(n.data);
+			if (n.left != null)
+				openlist.add(n.left);
+			if (n.right != null)
+				openlist.add(n.right);
+		}
+		for (int s : closelist) 
+				System.out.print(s+" ");
+	}
+
+	public static void main(String[] args) {
+		Node root = new Node(10);
+		root.left = new Node(20);
+		root.right = new Node(30);
+		root.left.left = new Node(40);
+		root.left.right = new Node(50);
+		root.right.left = new Node(60);
+		root.right.right = new Node(70);
+
+		Ai_bfs i = new Ai_bfs();
+		System.out.println("Breadth First Search : ");
+		i.bfstraversal(root);
+	}
+}
+
